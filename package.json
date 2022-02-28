@@ -1,0 +1,108 @@
+{
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "@babel/runtime": "^7.9.2",
+    "@emotion/core": "^11.0.0",
+    "@emotion/css": "^11.0.0",
+    "@emotion/react": "^11.1.2",
+    "@emotion/styled": "^11.0.0",
+    "@material-ui/core": "^4.12.3",
+    "@metamask/detect-provider": "^1.2.0",
+    "@sentry/react": "^6.13.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/react-router-dom": "^5.1.6",
+    "@web3-react/core": "^6.1.1",
+    "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/walletconnect-connector": "^6.1.6",
+    "antd": "^4.16.13",
+    "axios": "^0.22.0",
+    "bignumber.js": "^9.0.0",
+    "emotion-theming": "^11.0.0",
+    "firebase": "^9.1.2",
+    "from-exponential": "^1.1.1",
+    "fuse.js": "^6.4.6",
+    "graphql": "^15.6.1",
+    "ipfs-core": "^0.12.1",
+    "ipfs-http-client": "^54.0.1",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.25.3",
+    "polished": "^4.0.5",
+    "react": "^16.12.0",
+    "react-copy-to-clipboard": "^5.0.4",
+    "react-dom": "^16.12.0",
+    "react-icons": "^4.3.1",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-jazzicon": "^0.1.3",
+    "react-multi-carousel": "^2.6.5",
+    "react-number-format": "^4.4.1",
+    "react-progress-button": "^5.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.0",
+    "react-scroll-into-view": "^1.10.1",
+    "react-slick": "^0.28.1",
+    "react-spinners": "^0.9.0",
+    "react-table": "^7.7.0",
+    "react-tooltip": "^4.2.11",
+    "react-use": "^15.3.8",
+    "react-widgets": "^4.5.0",
+    "react-widgets-moment": "^4.0.20",
+    "recharts": "^2.1.4",
+    "recoil": "^0.1.2",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.1.0",
+    "typescript": "^4.1.3",
+    "universal-cookie": "^4.0.4",
+    "use-dark-mode": "^2.3.1",
+    "web3": "^1.2.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/**.{js, jsx, ts, tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.1.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^10.0.10",
+    "prettier": "2.2.1"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.1.3",
+    "**/@typescript-eslint/parser": "^4.1.3"
+  }
+}

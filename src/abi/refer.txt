@@ -1,0 +1,17 @@
+- erc20abi (peertopeermarkets.sol)
+----------------------------------------------
+-erc20nftfyauction  (auctionFractionalizer.sol)
+----------------
+- erc20shares abi(erc721shares.sol)
+---------------------
+-erc721 abi ()
+approve(nftfyAuctionAddress, erc721TokenId)
+
+getApproved(tokenId)
+approve(config.collectiveBuy.contract, tokenId)
+kittyIndexToApproved(erc721TokenId)
+getApproved(erc721TokenId)
+setApprovalForAll(operatorAddress, true)
+isApprovedForAll(ownerAddress, operatorAddress)
+tokenURI(tokenId)
+balanceOf(account)
