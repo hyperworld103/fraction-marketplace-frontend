@@ -7,7 +7,7 @@ CopyRights : LinkWell
 Purpose : This is the file which contain all api constants used in the application 
 */
 export const API = {
-    server_url: "http://localhost:5000",
+    server_url: "http://localhost:5001",
     ipfs_url: "https://ipfs.io/ipfs/",
     etherscan_url: "https://ropsten.etherscan.io/address/", // mainnet: "https://etherscan.io/address/",
     cookie_expire: 60,  //1h
