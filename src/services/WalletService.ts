@@ -59,6 +59,7 @@ const apiProvider = (): WalletService => {
 
       try {
         let w_result = await axios.post(API.server_url + API.item_list, cond_data, headers)
+        
         if(w_result.status === 200){
           let w_temp: any = w_result.data
           const nftsByWallet: any = w_temp.data
@@ -87,7 +88,7 @@ const apiProvider = (): WalletService => {
           }>[] = []
           erc721Items.forEach(erc721Item => erc721ItemsMetadataPromises.push(getErc721Metadata(erc721Item.address, erc721Item.tokenId, erc721Item.cid, erc721Item.animationType, erc721Item.id)))
           const erc721ItemsMetadata = await Promise.all(erc721ItemsMetadataPromises)
-          
+
           erc721Items = erc721Items.map(erc721Item => {
             const metadata = erc721ItemsMetadata.find(
               erc721ItemMetadata => erc721Item.id == erc721ItemMetadata.id

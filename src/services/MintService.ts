@@ -16,6 +16,8 @@ export const mintErc721 = async (name: string, description: string, image: strin
 
     let w_data = { name: name, description: description, thumb: image, media: media, cid: cid, collection_id: collection, category: nftType }
     let w_return = '';
+
+    console.log(w_data);
     await axios.post(API.server_url + API.item_add, w_data, headers)
     .then(response => {
         if(response.status == 200){console.log(response)

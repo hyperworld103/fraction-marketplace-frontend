@@ -77,11 +77,26 @@ const getAuthor = (metadata: {
 }
 
 export const getErc721Metadata = async (address: string, tokenId: string, cid: string, animationType: string, id: string) => {
+  let res = {
+    id: '',
+    description: '',
+    image_url: '',
+    animation_url: '',
+    social_media: '',
+    name: '',
+    address,
+    tokenId,
+    author: '',
+    animationType: '',
+    attributes: undefined
+  };
+
   try {
     const metadata = await axios.get(safeIpfsUrl(cid))
+    console.log(111, cid);
     const author = getAuthor(metadata.data)
     const { name, description, image, animation_url, social_media, attributes } = metadata.data
-    return {
+    res = {
       id,
       description,
       image_url: safeIpfsUrl(image),
@@ -94,23 +109,12 @@ export const getErc721Metadata = async (address: string, tokenId: string, cid: s
       attributes: attributes,
       animationType
     }
+    
   } catch (error) {
+    console.log(error);
     Sentry.captureException(error)
   }
-
-  return {
-    id: '',
-    description: '',
-    image_url: '',
-    animation_url: '',
-    social_media: '',
-    name: '',
-    address,
-    tokenId,
-    author: '',
-    animationType: '',
-    attributes: undefined
-  }
+  return res;
 }
 
 export const getZoraErc721Metadata = async (address: string, tokenId: string, web3: Web3) => {

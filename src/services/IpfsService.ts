@@ -32,25 +32,32 @@ export const PinataIpfsService = (): IpfsService => {
     async uploadToIpfs(data, image, video, audio): Promise<IpfsFileResponse> {   
       
       try {
-        // let w_imageIpfs = await ipfs.add(image)
-        // data.image = w_imageIpfs['path']
+        let w_imageIpfs = await ipfs.add(image)
+        data.image = w_imageIpfs['path']
+        data.animation_url = ''
 
-        // if( image && video ){
-        //   let w_mediaIpfs = await ipfs.add(video)
-        //   data.animation_url = w_mediaIpfs['path']
-        // } else if( image && audio ) {
-        //   let w_mediaIpfs = await ipfs.add(audio)
-        //   data.animation_url = w_mediaIpfs['path']
-        // }
+        if( image && video ){
+          let w_mediaIpfs = await ipfs.add(video)
+          data.animation_url = w_mediaIpfs['path']
+        } else if( image && audio ) {
+          let w_mediaIpfs = await ipfs.add(audio)
+          data.animation_url = w_mediaIpfs['path']
+        }
           
 
-        // const nftMetadataFile = JSON.stringify(data)
-        // const _cid = await ipfs.add(nftMetadataFile)
+        const nftMetadataFile = JSON.stringify(data)
+        const _cid = await ipfs.add(nftMetadataFile)
+
+        // return {
+        //   image: 'QmTdrXMN2fDAKkiYKvQaprWVMDeiDirbiiRm4tEGAFjeBj3', //data.image,
+        //   animation_url: 'Qme3qPtFkHhAa6xCsxV4hAHJh2hG1K1UarKUmZM1iJiXAx3', //data.animation_url,
+        //   cid: 'QmSppX72tE98tQ7xUEbeNqehDhVqZ67u2AEKnsUkJEWpBb3'//_cid['path']
+        // }
 
         return {
-          image: 'QmTdrXMN2fDAKkiYKvQaprWVMDeiDirbiiRm4tEGAFjeBj3', //data.image,
-          animation_url: 'Qme3qPtFkHhAa6xCsxV4hAHJh2hG1K1UarKUmZM1iJiXAx3', //data.animation_url,
-          cid: 'QmSppX72tE98tQ7xUEbeNqehDhVqZ67u2AEKnsUkJEWpBb3'//_cid['path']
+          image: data.image,
+          animation_url: data.animation_url,
+          cid: _cid['path']
         }
       } catch(e) {
         return { error: 'upload failed' }
