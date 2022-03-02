@@ -46,6 +46,7 @@ export default function CollectionViewPage() {
   const getCollection = async () => {
     let data = {contract_address: address};
     let collectionData = await getCollectionInfo(data);
+    console.log(collectionData);
     setCollection(collectionData);
   }
 
@@ -113,7 +114,7 @@ export default function CollectionViewPage() {
     <S.Div>
       <Navbarmenu />
       <S.Main>
-        <CollectionMain id={collection['_id']} name={collection['name']} logo={collection['image']} banner={collection['banner']} item_count={collection['item_count']} royalties={collection['royalties']} volume_traded={collection['volume_traded']}/>
+        <CollectionMain contract_address={collection['contract_address']} id={collection['_id']} name={collection['name']} logo={collection['image']} banner={collection['banner']} item_count={collection['item_count']} royalties={collection['royalties']} volume_traded={collection['volume_traded']}/>
       </S.Main>   
       <S.Contents>
         <div style={{marginBottom: '20px'}}>

@@ -100,10 +100,10 @@ export default function CreateCollectionPage() {
     
     if(mode==='create'){
       await AddCollection(data);
-      notifySuccess('Collection created successfully! You will be redirected to the myCollection page in a few seconds')
       history.push(`/collection/mycollection`)
     } else {
       await UpdateCollection(data);
+      history.push(`/collection/mycollection`)
     }
   }
   return (

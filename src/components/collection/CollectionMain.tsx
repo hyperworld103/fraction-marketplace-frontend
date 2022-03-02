@@ -8,6 +8,7 @@ import {API} from '../../constants/api';
 import { deleteCollection } from '../../services/CollectionService'
 
 export type CollectionProps = {
+  contract_address: string,
   id: string,
   name: string,
   logo: string,
@@ -17,7 +18,7 @@ export type CollectionProps = {
   volume_traded: number
 }
 
-export default function CollectionMain({ id, name, logo, banner, item_count, royalties, volume_traded }: CollectionProps) {
+export default function CollectionMain({contract_address, id, name, logo, banner, item_count, royalties, volume_traded }: CollectionProps) {
   const history = useHistory();
   const [isMenu, setisMenu] = useState(false);
   const [isResponsiveclose, setResponsiveclose] = useState(false);
@@ -45,6 +46,7 @@ export default function CollectionMain({ id, name, logo, banner, item_count, roy
       setSubMenuCreate(isSubMenuCreate === false ? true : false);
   };
 
+  console.log("contract addr", contract_address);
   return (
     <S.Container>
       <Navbarmenu />
@@ -65,7 +67,7 @@ export default function CollectionMain({ id, name, logo, banner, item_count, roy
           <RiIcons.RiSettings2Line style={{width: '25px', fontSize: '18px', margin: '-6px 0 0 -13px'}} />
           <S.SettingsUl className={createSubMenuClass.join(' ')} > 
               <li className='sub-item' style={{borderBottom: '0px'}}> <S.SettingsLink onClick={(e:any)=>sortHandle(e, '/create/' + id + '/image')}> Add Item </S.SettingsLink> </li>
-              <li className='sub-item' style={{borderBottom: '0px'}}><S.SettingsLink onClick={(e:any)=>sortHandle(e, '/edit/collection/' + id)}> Edit Collection </S.SettingsLink> </li>
+              <li className='sub-item' style={{borderBottom: '0px'}}><S.SettingsLink onClick={(e:any)=>sortHandle(e, '/edit/collection/' + contract_address)}> Edit Collection </S.SettingsLink> </li>
               <li className='sub-item' style={{borderBottom: '0px'}}><S.SettingsLink onClick={(e:any)=>sortHandle(e, '/collection/mycollection')}> Delete Collection </S.SettingsLink> </li>
               <li className='sub-item' style={{borderBottom: '0px'}}><S.SettingsLink onClick={(e:any)=>sortHandle(e, '/Activity')}> Activity </S.SettingsLink> </li>
           </S.SettingsUl>
