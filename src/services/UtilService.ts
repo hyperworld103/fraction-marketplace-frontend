@@ -93,7 +93,6 @@ export const getErc721Metadata = async (address: string, tokenId: string, cid: s
 
   try {
     const metadata = await axios.get(safeIpfsUrl(cid))
-    console.log(111, cid);
     const author = getAuthor(metadata.data)
     const { name, description, image, animation_url, social_media, attributes } = metadata.data
     res = {
