@@ -112,6 +112,7 @@ export default function MintPage() {
       setIsLoading(false)
       return
     }
+
     let w_ret = nftMetadata.cid && await mintErc721( title, description, nftMetadata.image, nftMetadata.animation_url, nftMetadata.cid, collectionId, nftType)
     setIsLoading(false)
     if(w_ret == '') return;

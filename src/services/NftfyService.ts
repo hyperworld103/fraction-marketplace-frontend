@@ -56,6 +56,7 @@ export const approveErc721 = (erc721Address: string, erc721TokenId: number, chai
   };
 
   let w_data = { address: erc721Address, tokenId: erc721TokenId, auction: false }
+  console.log(w_data);
   axios.post(API.server_url + API.item_fracApprove, w_data, headers)
     .then(response => {
         if(response.status == 200){
@@ -114,19 +115,21 @@ export const fractionalizeErc721 = async (
   // add fraction data request
   let data = {item_id: itemId, name: name, symbol: symbol, decimals: fractionDecimals, totalSupply: fractionCount, price: fractionPrice, paymentToken: paymentTokenAddress, type:'set_price', chainId: chainId}
   let w_return;
-  await axios.post(API.server_url + API.item_fractionAdd, data, headers)
-  .then(response => {
-      if(response.status == 200){
-          let data:any = response.data;
-          if(data.status){
-              w_return = data.result;               
-          }
-          notifySuccess(data.message)
-      }
-  })
-  .catch(error => {
-      notifyError(code[5011], error)
-  })
+
+  // console.log(data)
+  // await axios.post(API.server_url + API.item_fractionAdd, data, headers)
+  // .then(response => {
+  //     if(response.status == 200){
+  //         let data:any = response.data;
+  //         if(data.status){
+  //             w_return = data.result;               
+  //         }
+  //         notifySuccess(data.message)
+  //     }
+  // })
+  // .catch(error => {
+  //     notifyError(code[5011], error)
+  // })
 
   return w_return;
 }

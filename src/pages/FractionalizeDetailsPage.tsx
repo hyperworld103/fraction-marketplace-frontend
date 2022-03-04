@@ -23,6 +23,7 @@ export default function FractionalizeDetailsPage() {
     )
   }
 
+  console.log(erc721);
   return (
     <DefaultPageTemplate>
       <FractionalizeERC721 chainId={chainId} erc721={erc721} itemId={itemId} />

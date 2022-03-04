@@ -84,8 +84,8 @@ export default function FractionalizePage() {
       setAlertError(true)
     }
   }
-  
   console.log(nfts);
+
   return (
     <DefaultPageTemplate>
       <div style={{marginBottom: '20px', marginTop: '50px'}}>

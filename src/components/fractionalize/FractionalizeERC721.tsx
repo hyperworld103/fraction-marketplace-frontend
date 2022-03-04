@@ -101,6 +101,7 @@ export const FractionalizeERC721 = ({ chainId, erc721, itemId }: FractionalizeER
   }
 
   const approve = () => {
+    console.log("approve");
     if ( chainId && erc721) {
       type === 'bid'
         ? approveErc721Auction(erc721?.address, Number(erc721?.tokenId))

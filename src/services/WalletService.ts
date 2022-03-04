@@ -60,9 +60,11 @@ const apiProvider = (): WalletService => {
       try {
         let w_result = await axios.post(API.server_url + API.item_list, cond_data, headers)
         
+
         if(w_result.status === 200){
           let w_temp: any = w_result.data
           const nftsByWallet: any = w_temp.data
+          
           nftsByWallet.map((nft: any) => {
             erc721Items.push({
               address: nft.collection_id.contract_address,
