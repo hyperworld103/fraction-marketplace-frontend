@@ -294,6 +294,7 @@ export const userService = () : UserService => {
             let cond_data = {}
             cond_data['erc20Address'] = erc20Address;
 
+            console.log('User Service', erc20Address);
             await axios.post(API.server_url + API.user_erc20_balance, cond_data, headers)
             .then(response => {
                 if(response.status === 200) {

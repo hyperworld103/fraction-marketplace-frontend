@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import styled, { css } from 'styled-components'
-import ETH from '../../assets/tokens/ETH.png'
+import ETH from '../../assets/tokens/ethereum-eth.svg'
 import { chainIdVar } from '../../graphql/variables/WalletVariable'
 import { getAssetLogo } from '../../services/WalletService'
 
@@ -20,6 +20,7 @@ export const ImageToken: React.FC<ImageProps> = (imageProps: ImageProps) => {
   useEffect(() => {
     setShowImage(getAssetLogo(address, chainId))
   }, [address, chainId])
+  console.log(address);
   return (
     <S.BoxImage className={`${input ? 'input' : 'box'}, ${className}`}>
       {showImage ? (

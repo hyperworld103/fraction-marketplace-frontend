@@ -58,9 +58,9 @@ const apiProvider = (): WalletService => {
       cond_data['type'] = 'fraction'
 
       try {
+        console.log(cond_data);
         let w_result = await axios.post(API.server_url + API.item_list, cond_data, headers)
         
-
         if(w_result.status === 200){
           let w_temp: any = w_result.data
           const nftsByWallet: any = w_temp.data

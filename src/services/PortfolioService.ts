@@ -5,10 +5,11 @@ import { units } from './UtilService'
 
 export const setPortfolioItemsLiquidity = async (erc20Shares: WalletERC20Share[], chainId: number): Promise<WalletERC20Share[]> => {
   const erc20ItemsWithLiquidity = erc20Shares.map(async (erc20ShareItem: WalletERC20Share) => {
-    const midMarketPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
-      erc20ShareItem.id,
-      erc20ShareItem.paymentToken.id
-    )
+    // const midMarketPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
+    //   erc20ShareItem.id,
+    //   erc20ShareItem.paymentToken.id
+    // )
+    let midMarketPrice;
 
     if (!midMarketPrice || midMarketPrice === '0') {
       return {

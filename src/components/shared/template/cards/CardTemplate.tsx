@@ -12,7 +12,7 @@ export type CardTemplateProps = {
   animation_url?: string
   className?: string
   name?: string
-  price?: number
+  price?: number | string
   collectionAddress?: string
   ownership?: string
   isBoxNftCount?: number
@@ -45,7 +45,7 @@ export function CardTemplate({
         <S.Content>
           <Spin indicator={<Skeleton.Avatar active size={64} shape='circle' />} spinning={!!loading} />
           <S.Img
-            src={API.ipfs_url + image}
+            src={image}
             className={selectedImage === notFound ? 'img-fail' : ''}
             onError={onImageError}
             alt={name || 'not found'}

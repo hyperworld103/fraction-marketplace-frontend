@@ -300,10 +300,13 @@ export const TheGraphPeerToPeerService = (chainId: number): PeerToPeerService =>
           return message
         }
 
-        let cond_data: any = {}
-        cond_data['baseToken'] = baseToken
-        cond_data['quoteToken'] = quoteToken
-        const market = await axios.post(API.server_url + API.item_listOrder, cond_data)
+        // let cond_data: any = {}
+        // cond_data['baseToken'] = baseToken
+        // cond_data['quoteToken'] = quoteToken
+        // const market = await axios.post(API.server_url + API.item_listOrder, cond_data)
+        let market;
+        market.status = 0;
+        
         if(market.status != 200){
           return {
             sellOrders: [],

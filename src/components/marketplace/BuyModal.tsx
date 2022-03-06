@@ -17,6 +17,7 @@ export default function BuyModal() {
     buyModalVar(undefined)
   }
 
+  console.log(buyModal, account);
   return (
     <S.Modal centered visible={!!buyModal} onCancel={handleCancel}>
       {buyModal && <BuyModalNft account={account} erc20={buyModal.item} />}

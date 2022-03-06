@@ -51,6 +51,10 @@ export function BuyModalNft({ erc20, account }: BuyModalNftProps) {
 
   useEffect(() => {
     const checkApproved = async () => {
+      if(paymentToken.symbol == 'ETH') {
+        setApproved(true)
+        return
+      }
       if (paymentToken.symbol === null) {
         setApproved(true)
         return
@@ -93,6 +97,7 @@ export function BuyModalNft({ erc20, account }: BuyModalNftProps) {
           })
         )
     }
+    
     getShareBalance()
   }, [account, id, chainId, decimals, totalSupply])
 
@@ -127,7 +132,7 @@ export function BuyModalNft({ erc20, account }: BuyModalNftProps) {
   }
 
   const redeem = async () => {
-    account && redeemErc20(id, account, chainId)
+    return (account && redeemErc20(id, account, chainId));
   }
 
   const openConnectWalletModal = () => {

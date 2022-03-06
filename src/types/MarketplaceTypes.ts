@@ -2,7 +2,7 @@ interface Currency {
   id: string
   name: string
   symbol: string
-  decimals: number
+  decimals: number,
 }
 
 interface PaymentToken {

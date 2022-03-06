@@ -68,9 +68,12 @@ export default function MarketplacePage() {
   }
 
   const setFilteredNfts = useCallback(
+    
     (items: MarketplaceERC20Item[]) => {
+
       const filteredItems: MarketplaceERC20Item[] =
-        chainId && marketplaceBlacklist ? items.filter(item => !marketplaceBlacklist.includes(item.id)) : items
+        chainId && marketplaceBlacklist ? items.filter(item => !marketplaceBlacklist.includes(item.id)) : items;
+      
       setNfts(filteredItems)
     },
     [marketplaceBlacklist, chainId]
@@ -88,6 +91,7 @@ export default function MarketplacePage() {
       const getInitialNfts = async () => {
         setLoading(true)
         setHasMore(true)
+        console.log("Fetch Items", chainId);
         const nftItems = await marketplaceService(chainId, 2).getMarketplaceItems(
           sortingDirection,
           sortingField,
@@ -96,7 +100,7 @@ export default function MarketplacePage() {
           offset,
           searchName
         )
-
+        console.log(nftItems);
         setFilteredNfts(nftItems)
         setOffset(nftItems.length)
         setLoading(false)
@@ -150,6 +154,8 @@ export default function MarketplacePage() {
       setIncomplete(false)
     }
   }, [fracApiVersion, incomplete, loadMore])
+
+  console.log(nfts);
   return (
     <>    
     <Sidebar sidebarChange = {sidebarChange} handleFilter = {marketplaceFiltersVar} />
@@ -177,6 +183,7 @@ export default function MarketplacePage() {
               <CardTemplate
                 key={`${nftItem.id}`}
                 image={image}
+                price={nftItem.exitPrice}
                 animation_url={nftItem?.metadata?.animation_url}
                 name={String(nftItem?.metadata?.name)}
                 isBoxNftCount={nftItem?.nftCount}

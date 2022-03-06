@@ -87,6 +87,7 @@ export const SelectPaymentTokenModal = ({ visible, onCancel, onSelect, location 
     selectPaymentTokenModalLoadingVar(false)
   }
 
+  console.log(assetsFilter);
   return (
     <S.Modal visible={visible} onCancel={handleCancel} footer={null} destroyOnClose>
       <S.TitleContent>Select Asset</S.TitleContent>

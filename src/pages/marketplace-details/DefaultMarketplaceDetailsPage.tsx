@@ -105,17 +105,25 @@ export default function DefaultMarketplaceDetailsPage({ address, itemId, selecte
   useEffect(() => {
     const getNft = async () => {
       if (address && selectedChainId && !updateListingModal) {
+
         setIsLoading(true)
-        const nft = await marketplaceService(selectedChainId, 2).getMarketplaceItemByAddress(address, itemId)
+        console.log("start2", address, itemId);
+        const nft = await marketplaceService(selectedChainId, 2).getMarketplaceItemByAddress(address, itemId);
+
+        console.log("start", nft);
         if (!nft) {
           setErc20(null)
           setIsLoading(false)
           return
         }
+        console.log("end1");
         const nftWithLiquidity = await setMarketplaceItemLiquidity(nft, selectedChainId)
-
-        setErc20(nftWithLiquidity)
+        console.log("end");
+        setErc20(nft);
+        console.log("end2");
+        //setErc20(nftWithLiquidity)
         setIsLoading(false)
+
       }
     }
     if (!placeBidModal) {

@@ -56,6 +56,9 @@ export const FractionalizeERC721 = ({ chainId, erc721, itemId }: FractionalizeER
   const fractionDecimals = paymentToken.decimals < 8 ? 4 : 6
   const _reservePrice = scale(new BigNumber(reservePrice), paymentToken.decimals)
   const _fractionCount = scale(new BigNumber(fractionsTotal), fractionDecimals)
+  console.log(paymentToken);
+  console.log(_reservePrice, _fractionCount);
+
   const fractionPrice = _reservePrice.dividedBy(_fractionCount).toString()
   const fractionPriceMod = _reservePrice.modulo(_fractionCount).toNumber()
 
@@ -101,11 +104,10 @@ export const FractionalizeERC721 = ({ chainId, erc721, itemId }: FractionalizeER
   }
 
   const approve = () => {
-    console.log("approve");
     if ( chainId && erc721) {
-      type === 'bid'
+      let res = type === 'bid'
         ? approveErc721Auction(erc721?.address, Number(erc721?.tokenId))
-        : approveErc721(erc721?.address, Number(erc721?.tokenId), chainId)
+        : approveErc721(erc721?.address, Number(erc721?.tokenId), chainId);
     }
   }
 
@@ -188,11 +190,13 @@ export const FractionalizeERC721 = ({ chainId, erc721, itemId }: FractionalizeER
 
   useEffect(() => {
     const checkApproved = async () => {
+      console.log("approved==========")
       if (chainId && !transactionLoading && erc721 && !isLoading) {
         const isApproved =
           type === 'bid'
             ? await getApproved721Auction(erc721?.address, Number(erc721?.tokenId), chainId)
-            : await getApproved721(erc721?.address, Number(erc721?.tokenId), chainId)
+            : await getApproved721(erc721?.address, Number(erc721?.tokenId), chainId);
+            console.log(isApproved);
         setApproved(isApproved)
       }
     }

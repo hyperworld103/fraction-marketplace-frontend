@@ -3,8 +3,10 @@ import { Skeleton } from 'antd'
 import { now } from 'lodash'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import iconRedeem from '../../assets/nft-card/iconRedeem.svg'
+// import iconRedeem from '../../assets/nft-card/iconRedeem.svg'
 import startImage from '../../assets/nft-card/star.svg'
+import iconRedeem from '../../assets/Redeem.svg';
+// import startImage from '../../assets/'
 import { getChainConfigById } from '../../config'
 import { getFeatureToggleByChainId } from '../../featureToggle'
 import { setMarketplaceItemLiquidity } from '../../services/MarketplaceService'
@@ -24,13 +26,13 @@ export const FooterCardMarketplace = ({ erc20Item, chainId }: FooterCardMarketpl
   const featureToggle = getFeatureToggleByChainId(chainId)
 
   useEffect(() => {
-    const setERC20Liquidity = async () => {
-      setIsLoadingLiquidity(true)
-      setNftItem(await setMarketplaceItemLiquidity(erc20Item, chainId))
-      setIsLoadingLiquidity(false)
-    }
+    // const setERC20Liquidity = async () => {
+    //   setIsLoadingLiquidity(true)
+    //   setNftItem(await setMarketplaceItemLiquidity(erc20Item, chainId))
+    //   setIsLoadingLiquidity(false)
+    // }
 
-    setERC20Liquidity()
+   // setERC20Liquidity()
   }, [chainId, erc20Item])
 
   const handleDollarFractionPrice = () => {

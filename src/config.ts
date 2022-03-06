@@ -131,6 +131,8 @@ export const quickNodeKey = process.env.REACT_APP_QUICKNODE_KEY
 
 export const allowedChains = [1, 3]
 
+console.log(infuraKey);
+
 export const chainsConfig: ChainConfig[] = [
   {
     id: 1,
@@ -139,8 +141,8 @@ export const chainsConfig: ChainConfig[] = [
     etherscanAddress: 'https://etherscan.io/',
     bscScanAddress: 'https://bscscan.com/',
     name: 'mainnet',
-    infuraAddress: `https://mainnet.infura.io/v3/${infuraKey}`,
-    zeroXBaseUrl: 'https://api.0x.org',
+    infuraAddress: `https://ropsten.infura.io/v3/${infuraKey}`,
+    zeroXBaseUrl: 'https://api.0x.org', 
     bscNodeAddress: `https://bsc-dataseed.binance.org/`,
     ethAddress: '0x0000000000000000000000000000000000000000',
     masterChefAddress: '',
@@ -335,8 +337,8 @@ export const chainsConfig: ChainConfig[] = [
       },
       {
         id: '2',
-        name: 'USD Coin',
-        symbol: 'USDC',
+        name: 'Ether',
+        symbol: 'ETH',
         address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
         balance: '0',
         decimals: 6,
@@ -351,7 +353,7 @@ export const chainsConfig: ChainConfig[] = [
     etherscanAddress: 'https://etherscan.io/',
     bscScanAddress: 'https://bscscan.com/',
     name: 'mainnet',
-    infuraAddress: `https://mainnet.infura.io/v3/${infuraKey}`,
+    infuraAddress: `https://ropsten.infura.io/v3/${infuraKey}`,
     zeroXBaseUrl: 'https://api.0x.org',
     bscNodeAddress: `https://bsc-dataseed.binance.org/`,
     ethAddress: '0x0000000000000000000000000000000000000000',
@@ -547,11 +549,12 @@ export const chainsConfig: ChainConfig[] = [
       },
       {
         id: '2',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        address: '0x70cdfb73f78c51bf8a77b36c911d1f8c305d48e6',
+        name: 'Ether',
+        symbol: 'ETH',
+        //address: '0x70cdfb73f78c51bf8a77b36c911d1f8c305d48e6',
+        address: '0x0000000000000000000000000000000000000000',
         balance: '0',
-        decimals: 6,
+        decimals: 18,
         imageUrl: ''
       }
     ]

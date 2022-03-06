@@ -6,15 +6,15 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import copyIcon from '../../../assets/icons/clip.svg'
-import holdersLinkIcon from '../../../assets/icons/holders-link.svg'
-import holdersIcon from '../../../assets/icons/holders.svg'
-import impliedValuationIcon from '../../../assets/icons/implied-valuation.svg'
-import emptyMessageIcon from '../../../assets/icons/invoice.svg'
+import holdersLinkIcon from '../../../assets/icons/icons8-link-96.png'
+import holdersIcon from '../../../assets/icons/holders.png'
+import impliedValuationIcon from '../../../assets/icons/evaluation.png'
+import emptyMessageIcon from '../../../assets/icons/invoice-8835.svg'
 import addToWalletIcon from '../../../assets/icons/metamask-icon.svg'
-import nftPriceIcon from '../../../assets/icons/nft-price.svg'
-import fractionReservePriceIcon from '../../../assets/icons/reserve-price.svg'
-import supplyIcon from '../../../assets/icons/supply.svg'
-import walletIcon from '../../../assets/icons/wallet-icon.svg'
+import nftPriceIcon from '../../../assets/icons/nft-price.png'
+import fractionReservePriceIcon from '../../../assets/icons/reserve-price.png'
+import supplyIcon from '../../../assets/icons/supply.png'
+import walletIcon from '../../../assets/icons/351999_account_balance_wallet_icon.svg'
 import { getChainConfigById } from '../../../config'
 import { chainConfig } from '../../../configV2'
 import { buyModalLiquidityVar } from '../../../graphql/variables/MarketplaceVariable'
@@ -75,11 +75,12 @@ export function TradeFractions({ erc20 }: TradeFractionsProps) {
         return
       }
 
-      const fractionPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
-        erc20.id,
-        erc20.paymentToken.id || '',
-        erc20.paymentToken.decimals
-      )
+      // const fractionPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
+      //   erc20.id,
+      //   erc20.paymentToken.id || '',
+      //   erc20.paymentToken.decimals
+      // )
+      let fractionPrice;
 
       setPriceDollarShares(Number(erc20.liquidity.priceDollar.replaceAll(',', '')).toLocaleString('en', { maximumFractionDigits: 6 }))
       buyModalLiquidityVar(erc20.liquidity.hasLiquidity)
@@ -91,14 +92,15 @@ export function TradeFractions({ erc20 }: TradeFractionsProps) {
 
   useEffect(() => {
     const obtainOrders = async (bookToken: string, execToken: string) => {
-      const obtainedMarket = await TheGraphPeerToPeerService(chainId).getMarket(bookToken, execToken)
+      
+      // const obtainedMarket = await TheGraphPeerToPeerService(chainId).getMarket(bookToken, execToken)
 
-      const obtainedBuyOrders = obtainedMarket.buyOrders
-      const obtainedSellOrders = obtainedMarket.sellOrders
+      // const obtainedBuyOrders = obtainedMarket.buyOrders
+      // const obtainedSellOrders = obtainedMarket.sellOrders
 
-      setTransactions(obtainedMarket.transactions)
-      setBuyOrders(obtainedBuyOrders)
-      setSellOrders(obtainedSellOrders)
+      // setTransactions(obtainedMarket.transactions)
+      // setBuyOrders(obtainedBuyOrders)
+      // setSellOrders(obtainedSellOrders)
     }
 
     erc20 && erc20.paymentToken && obtainOrders(erc20.id, erc20.paymentToken.id)

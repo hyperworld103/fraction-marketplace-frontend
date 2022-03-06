@@ -197,6 +197,7 @@ const walletConnectProvider = (chainIdParam?: number): MultiWalletService => {
 export const initializeWeb3 = (chainId: number, node?: boolean | string) => {
   const { infuraAddress, bscNodeAddress } = getChainConfigById(chainId)
 
+  console.log(infuraAddress);
   if (node === 'infura') {
     return new Web3(new Web3.providers.HttpProvider(infuraAddress))
   }

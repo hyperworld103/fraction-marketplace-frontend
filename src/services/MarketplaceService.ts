@@ -75,9 +75,14 @@ export const marketplaceService = (chainId: number, version: 1 | 2): Marketplace
 
   const setMarketplaceItemHoldersCount = async (erc20Item: MarketplaceERC20Item): Promise<MarketplaceERC20Item> => {
     const web3 = initializeWeb3(chainId)
-    const contractERC20shares = new web3.eth.Contract(erc20SharesAbi as AbiItem[], erc20Item.id)
+
+    const contractERC20shares = new web3.eth.Contract(erc20SharesAbi as AbiItem[], 
+      erc20Item.id)
+
+    console.log(contractERC20shares);
     let w_holders = await contractERC20shares.methods.holders().call()
 
+    console.log(w_holders);
     return { ...erc20Item, holdersCount: w_holders }
   }
 
@@ -198,7 +203,6 @@ export const marketplaceService = (chainId: number, version: 1 | 2): Marketplace
     ) {
       const setMarketplaceItemsMetadata = async (erc20Items: MarketplaceERC20Item[]) => {
         const erc20ItemsFormatted: MarketplaceERC20Item[] = []
-
         await Promise.all(
           erc20Items.map(async erc20Item => {
             erc20ItemsFormatted.push(await setMarketplaceItemMetadata(erc20Item))
@@ -227,6 +231,7 @@ export const marketplaceService = (chainId: number, version: 1 | 2): Marketplace
         if(w_result.status === 200){
           let w_temp: any = w_result.data;
           let erc20Items: MarketplaceERC20Item[] = w_temp.data;
+          console.log("1111", erc20Items)
           return await setMarketplaceItemsMetadata(erc20Items)   
         }
         return []
@@ -244,7 +249,7 @@ export const marketplaceService = (chainId: number, version: 1 | 2): Marketplace
           }
       };
       let cond_data = {};
-      cond_data['target'] = itemId;
+      cond_data['frac_addr'] = erc20Address;
 
       try {
         let w_result = await axios.post(API.server_url + API.item_fractionGet, cond_data, headers)
@@ -254,6 +259,7 @@ export const marketplaceService = (chainId: number, version: 1 | 2): Marketplace
           let w_erc20Item: MarketplaceERC20Item = w_temp.data;
  
           const erc20ItemWithMetadata = await setMarketplaceItemMetadata(w_erc20Item)
+
           return setMarketplaceItemHoldersCount(erc20ItemWithMetadata)
         }
         return undefined
@@ -310,11 +316,12 @@ export const setMarketplaceItemLiquidity = async (erc20Item: MarketplaceERC20Ite
     return erc20Item
   }
 
-  const erc20MarketPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
-    erc20Item.id,
-    erc20Item.paymentToken.id,
-    erc20Item.paymentToken.decimals
-  )
+  // const erc20MarketPrice = await TheGraphPeerToPeerService(chainId).getTokensPairMarketPrice(
+  //   erc20Item.id,
+  //   erc20Item.paymentToken.id,
+  //   erc20Item.paymentToken.decimals
+  // )
+  let erc20MarketPrice;
 
   if (!erc20MarketPrice) {
     itemWithLiquidity.liquidity = {
@@ -324,12 +331,12 @@ export const setMarketplaceItemLiquidity = async (erc20Item: MarketplaceERC20Ite
     return erc20Item
   }
 
-  itemWithLiquidity.liquidity = await zeroXQuoteService().quoteToStablecoin(
-    erc20Item.paymentToken.id,
-    units(erc20MarketPrice, erc20Item.paymentToken.decimals),
-    erc20Item.paymentToken.decimals,
-    chainId
-  )
+  // itemWithLiquidity.liquidity = await zeroXQuoteService().quoteToStablecoin(
+  //   erc20Item.paymentToken.id,
+  //   units(erc20MarketPrice, erc20Item.paymentToken.decimals),
+  //   erc20Item.paymentToken.decimals,
+  //   chainId
+  // )
 
   return itemWithLiquidity
 }

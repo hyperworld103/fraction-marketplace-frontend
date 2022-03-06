@@ -121,6 +121,7 @@ export function SetPrice({ erc20 }: SetPriceProps) {
   }
 
   const redeemNft = () => {
+    console.log(account, erc20.id, chainId);
     redeemErc20(erc20.id, account || '', chainId)
   }
 

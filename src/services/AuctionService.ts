@@ -33,7 +33,7 @@ export const fractionalizeErc721 = async (
     const unit1 = units(fractionCount, fractionDecimals);
     const unit2 = units(fee, 16);
 
-    let w_data = {erc721Address: erc721Address, erc721Id: erc721Id, unit1: unit1, kickoff: kickoff, duration: duration, unit2: unit2, name: name, symbol: symbol, decimals: fractionDecimals, price: fractionPrice, paymentToken: paymentTokenAddress, type:'auction', chainId: chainId}
+    let w_data = {fee: fee, days: numberOfDays, erc721Address: erc721Address, erc721Id: erc721Id, unit1: unit1, kickoff: kickoff, duration: duration, unit2: unit2, name: name, symbol: symbol, decimals: fractionDecimals, price: fractionPrice, paymentToken: paymentTokenAddress, type:'auction', chainId: chainId, item_id: itemId}
     const cookies = new Cookies()
     const headers = {
         headers: {
@@ -42,38 +42,21 @@ export const fractionalizeErc721 = async (
         }
     };
 
+    let w_return = '';
+    console.log(w_data);
     await axios.post(API.server_url + API.item_fractionalize, w_data, headers)
     .then(response => {
-        if(response.status == 200){
-            let data:any = response.data;
-            if(data.status){
-              console.log('++++++++++++++++++++++++++++' + data.result)
-              handleTransaction(data.result, TransactionType.fractionalize);               
-            } else {
-              clearTransaction()
-            }
-        }
+      if(response.status == 200){
+          let data:any = response.data;
+          if(data.status){
+              w_return = data.result;               
+          }
+          notifySuccess(data.message)
+      }
     })
     .catch(error => {
         notifyError(code[5011], error)
     })
-
-    let data = {fee: fee, days: numberOfDays, item_id: itemId, name: name, symbol: symbol, decimals: fractionDecimals, totalSupply: fractionCount, price: fractionPrice, paymentToken: paymentTokenAddress, type:'auction', chainId: chainId}
-    let w_return;
-    await axios.post(API.server_url + API.item_fractionAdd, data, headers)
-    .then(response => {
-        if(response.status == 200){
-            let data:any = response.data;
-            if(data.status){
-                w_return = data.result;               
-            }
-            notifySuccess(data.message)
-        }
-    })
-    .catch(error => {
-        notifyError(code[5011], error)
-    })
-
     return w_return;
 }
 
